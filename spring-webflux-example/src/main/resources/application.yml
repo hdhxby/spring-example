@@ -1,0 +1,15 @@
+server:
+    port: 8082
+
+spring:
+    application:
+        name: webflux
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    endpoint:
+        health:
+            show-details: ALWAYS

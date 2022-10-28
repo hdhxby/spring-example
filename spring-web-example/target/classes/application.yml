@@ -1,0 +1,15 @@
+server:
+    port: 8081
+
+spring:
+    application:
+        name: web
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    endpoint:
+        health:
+            show-details: ALWAYS
