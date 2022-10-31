@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration scan="true" debug="true">
+    <!-- https://logback.qos.ch/manual/layouts.html -->
+    <withJansi>true</withJansi>
+    <property name="CONSOLE_LOG_PATTERN" value="%cyan(%c{0}) %m %n"/>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <logger name="com.hdhxby" level="DEBUG" />
+    <logger name="sun.rmi" level="INFO"/>
+    <logger name="javax.management.remote.rmi" level="INFO"/>
+
+</configuration>

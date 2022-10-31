@@ -1,6 +1,6 @@
 package io.github.thinkframework.jdbc.service;
 
-import com.hdhxby.example.entity.Person;
+import io.github.hdhxby.example.entity.Person;
 import io.github.thinkframework.jdbc.repository.PersonRepository;
 import io.github.thinkframework.jdbc.repository.ThinkAutowiredRepository;
 import org.springframework.beans.factory.annotation.Autowired;

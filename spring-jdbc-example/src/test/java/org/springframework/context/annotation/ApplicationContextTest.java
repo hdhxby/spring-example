@@ -1,7 +1,6 @@
 package org.springframework.context.annotation;
 
-import com.hdhxby.example.configuration.ThinkConfiguration;
-import com.hdhxby.example.entity.Speech;
+import io.github.hdhxby.example.configuration.ThinkConfiguration;
 import org.junit.Test;
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
@@ -14,7 +13,6 @@ import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.type.classreading.SimpleMetadataReaderFactory;
-import org.springframework.util.ClassUtils;
 import x.y.z.bean.Foo;
 import x.y.z.config.FooConfiguration;
 import x.y.z.repository.FooRepository;

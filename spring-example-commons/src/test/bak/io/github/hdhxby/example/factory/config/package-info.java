@@ -1,0 +1,1 @@
+package io.github.hdhxby.example.factory.config;

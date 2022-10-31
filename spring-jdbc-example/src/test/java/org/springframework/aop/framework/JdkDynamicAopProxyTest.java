@@ -1,9 +1,7 @@
 package org.springframework.aop.framework;
 
-import com.hdhxby.example.aop.ThinkAspect;
-import com.hdhxby.example.aop.ThinkBeforePointcutAdvisor;
-import com.hdhxby.example.entity.Person;
-import com.hdhxby.example.entity.Speech;
+import io.github.hdhxby.example.aop.ThinkAspect;
+import io.github.hdhxby.example.aop.ThinkBeforePointcutAdvisor;
 import org.aopalliance.intercept.Joinpoint;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -15,8 +13,6 @@ import org.springframework.aop.*;
 import org.springframework.aop.framework.adapter.DefaultAdvisorAdapterRegistry;
 import org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
-import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import x.y.z.service.FooService;
 import x.y.z.service.FooServiceImpl;
 
