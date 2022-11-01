@@ -22,6 +22,7 @@
         <module>spring-web-example</module>
         <module>spring-webflux-example</module>
         <module>spring-message-example</module>
+        <module>spring-integration-tests</module>
     </modules>
 
     <properties>

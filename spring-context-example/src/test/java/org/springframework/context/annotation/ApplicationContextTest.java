@@ -209,7 +209,7 @@ public class ApplicationContextTest {
     @Test
     public void test33(){
 
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(FooConfiguration.class);
 //        applicationContext.refresh();
         applicationContext.getBean(Foo.class);
     }

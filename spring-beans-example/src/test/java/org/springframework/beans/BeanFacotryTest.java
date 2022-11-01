@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostP
 import org.springframework.beans.factory.config.RuntimeBeanReference;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
+import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.context.annotation.ConfigurationClassPostProcessor;
 import org.springframework.context.annotation.ScannedGenericBeanDefinition;
@@ -24,12 +25,23 @@ import static org.junit.Assert.*;
 @Slf4j
 public class BeanFacotryTest {
 
+
+    /**
+     * 通过AnnotatedGenericBeanDefinition
+     * @throws IOException
+     */
+    @Test
+    public void testAnnotatedGenericBeanDefinition() throws IOException {
+        AnnotatedGenericBeanDefinition annotatedGenericBeanDefinition = new AnnotatedGenericBeanDefinition(FooServiceImpl.class);
+        assertEquals(FooServiceImpl.class.getName(),annotatedGenericBeanDefinition.getBeanClassName());
+    }
+
     /**
      * 通过SimpleMetadataReaderFactory获取BeanDefinition
      * @throws IOException
      */
     @Test
-    public void testBeanDefinition() throws IOException {
+    public void testScannedGenericBeanDefinition() throws IOException {
         SimpleMetadataReaderFactory simpleMetadataReaderFactory = new SimpleMetadataReaderFactory();
         ScannedGenericBeanDefinition scannedGenericBeanDefinition = new ScannedGenericBeanDefinition(simpleMetadataReaderFactory
                 .getMetadataReader(FooServiceImpl.class.getName()));

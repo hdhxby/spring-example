@@ -14,10 +14,6 @@
     <artifactId>spring-core-example</artifactId>
     <packaging>jar</packaging>
 
-    <properties>
-        <start-class>com.hdhxby.ecommerce.HelloApplication</start-class>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>io.github.hdhxby</groupId>

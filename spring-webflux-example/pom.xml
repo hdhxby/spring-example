@@ -14,11 +14,12 @@
     <artifactId>spring-webflux-example</artifactId>
     <packaging>jar</packaging>
 
-    <properties>
-        <start-class>io.github.hdhxby.example.webflux.SrpingWebFluxApplication</start-class>
-    </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>io.github.hdhxby</groupId>
+            <artifactId>spring-example-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- 三方库 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
