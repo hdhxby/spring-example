@@ -1,0 +1,11 @@
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/ThinkRepositoryFactoryBean.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/EnableThinkRepository.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/ThinkRepositoryScan.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/ThinkCrudRepository.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/package-info.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/ThinkAutowiredRepository.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/ThinkRepositoryBeanPostProcessor.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/ThinkRepositoryImportBeanDefinitionRegistrar.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/ThinkRepositoryBeanDefinitionRegistryPostProcessor.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/ThinkRepository.java
+/Users/lixiaobin/git/hdhxby/spring-example/spring-jdbc-example/src/main/java/io/github/thinkframework/jdbc/repository/ThinkRepositoryClassPathBeanDefinitionScanner.java

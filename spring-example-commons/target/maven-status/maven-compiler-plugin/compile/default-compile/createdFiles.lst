@@ -1,0 +1,8 @@
+x/y/z/config/FooConfiguration.class
+x/y/z/aop/LoggingAspect.class
+x/y/z/repository/FooRepositoryImpl.class
+x/y/z/service/FooService.class
+x/y/z/factory/FooFactory.class
+x/y/z/service/FooServiceImpl.class
+x/y/z/repository/FooRepository.class
+x/y/z/bean/Foo.class
