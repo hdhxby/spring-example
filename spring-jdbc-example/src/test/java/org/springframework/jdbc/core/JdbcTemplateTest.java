@@ -3,14 +3,21 @@ package org.springframework.jdbc.core;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 import static org.junit.Assert.*;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
+import x.y.z.config.FooConfiguration;
+import x.y.z.manager.FooManager;
+import x.y.z.service.FooService;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -77,6 +84,12 @@ JdbcTemplateTest {
                 }
             }
         });
+    }
 
+
+    @Test
+    public void testAnnotationAwareAspectJAutoProxyCreator(){
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(FooConfiguration.class);
+        Assert.assertEquals("foo",applicationContext.getBean(FooService.class).foo());
     }
 }

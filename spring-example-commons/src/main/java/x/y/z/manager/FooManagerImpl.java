@@ -11,7 +11,8 @@ public class FooManagerImpl implements FooManager {
     private static final Logger logger = LoggerFactory.getLogger(FooManagerImpl.class);
 
     @Override
-    public void foo() {
+    public String foo() {
         logger.info("简单调用");
+        return "foo";
     }
 }

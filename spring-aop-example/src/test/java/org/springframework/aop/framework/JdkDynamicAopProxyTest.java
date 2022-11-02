@@ -11,8 +11,8 @@ import org.springframework.aop.*;
 import org.springframework.aop.framework.adapter.DefaultAdvisorAdapterRegistry;
 import org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
-import x.y.z.service.FooService;
-import x.y.z.service.FooServiceImpl;
+import x.y.z.manager.FooManager;
+import x.y.z.manager.FooManagerImpl;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.InvocationHandler;
@@ -31,7 +31,7 @@ public class JdkDynamicAopProxyTest {
     @Test
     public void testAdvice() throws Throwable {
 
-        FooServiceImpl fooService = new FooServiceImpl();
+        FooManagerImpl FooManager = new FooManagerImpl();
 
         MethodInterceptor methodInterceptor = new MethodInterceptor(){
             @Override
@@ -53,7 +53,7 @@ public class JdkDynamicAopProxyTest {
 
             @Override
             public Object getThis() {
-                return fooService;
+                return FooManager;
             }
 
             @Override
@@ -69,7 +69,7 @@ public class JdkDynamicAopProxyTest {
             @Override
             public Method getMethod() {
                 try {
-                    return FooServiceImpl.class.getMethod("foo");
+                    return FooManagerImpl.class.getMethod("foo");
                 } catch (NoSuchMethodException e) {
                     return null;
                 }
@@ -78,7 +78,7 @@ public class JdkDynamicAopProxyTest {
 
         assertEquals("foo", methodInterceptor.invoke((MethodInvocation)joinPoint));
 
-        FooService proxy = (FooService) Proxy.newProxyInstance(JdkDynamicAopProxyTest.class.getClassLoader(), new Class[]{FooService.class}, new InvocationHandler(){
+        FooManager proxy = (FooManager) Proxy.newProxyInstance(JdkDynamicAopProxyTest.class.getClassLoader(), new Class[]{FooManager.class}, new InvocationHandler(){
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 return methodInterceptor.invoke((MethodInvocation)joinPoint);
@@ -90,7 +90,7 @@ public class JdkDynamicAopProxyTest {
 
     @Test
     public void testReflectiveMethodInvocation() throws Throwable {
-        FooServiceImpl fooService = new FooServiceImpl();
+        FooManagerImpl FooManager = new FooManagerImpl();
 
         MethodInterceptor methodInterceptor = new MethodInterceptor(){
             @Override
@@ -102,17 +102,17 @@ public class JdkDynamicAopProxyTest {
         };
 
         ReflectiveMethodInvocation reflectiveMethodInvocation = new ReflectiveMethodInvocation(null,
-                fooService,
-                FooServiceImpl.class.getMethod("foo"),
+                FooManager,
+                FooManagerImpl.class.getMethod("foo"),
                 new Object[0],
-                FooService.class,
+                FooManager.class,
                 List.of(methodInterceptor)
         );
 
         assertEquals("foo", methodInterceptor.invoke(reflectiveMethodInvocation));
 
 
-        FooService proxy = (FooService) Proxy.newProxyInstance(JdkDynamicAopProxyTest.class.getClassLoader(), new Class[]{FooService.class}, new InvocationHandler(){
+        FooManager proxy = (FooManager) Proxy.newProxyInstance(JdkDynamicAopProxyTest.class.getClassLoader(), new Class[]{FooManager.class}, new InvocationHandler(){
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 return methodInterceptor.invoke(reflectiveMethodInvocation);
@@ -124,7 +124,7 @@ public class JdkDynamicAopProxyTest {
 
     @Test
     public void testMethodBeforeAdvice() throws Throwable {
-        FooServiceImpl fooService = new FooServiceImpl();
+        FooManagerImpl FooManager = new FooManagerImpl();
 
 
         MethodBeforeAdvice advice = new MethodBeforeAdvice() {
@@ -139,23 +139,23 @@ public class JdkDynamicAopProxyTest {
         MethodInterceptor methodInterceptor = new MethodBeforeAdviceInterceptor(advice);
 
         ReflectiveMethodInvocation reflectiveMethodInvocation = new ReflectiveMethodInvocation(null,
-                fooService,
-                FooServiceImpl.class.getMethod("foo"),
+                FooManager,
+                FooManagerImpl.class.getMethod("foo"),
                 new Object[0],
-                FooService.class,
+                FooManager.class,
                 List.of(methodInterceptor)
         );
 
         PointcutAdvisor advisor = new DefaultPointcutAdvisor(methodInterceptor);
 
-        assertTrue(advisor.getPointcut().getClassFilter().matches(FooServiceImpl.class));
-        assertTrue(advisor.getPointcut().getMethodMatcher().matches(FooServiceImpl.class.getMethod("foo"), FooServiceImpl.class));
-//        if(advisor.getPointcut().getClassFilter().matches(FooServiceImpl.class)
-//                && advisor.getPointcut().getMethodMatcher().matches(FooServiceImpl.class.getMethod("foo"), FooServiceImpl.class)) {
+        assertTrue(advisor.getPointcut().getClassFilter().matches(FooManagerImpl.class));
+        assertTrue(advisor.getPointcut().getMethodMatcher().matches(FooManagerImpl.class.getMethod("foo"), FooManagerImpl.class));
+//        if(advisor.getPointcut().getClassFilter().matches(FooManagerImpl.class)
+//                && advisor.getPointcut().getMethodMatcher().matches(FooManagerImpl.class.getMethod("foo"), FooManagerImpl.class)) {
         assertEquals("foo", ((MethodBeforeAdviceInterceptor) advisor.getAdvice()).invoke(reflectiveMethodInvocation));
 //        }
 
-        FooService proxy = (FooService) Proxy.newProxyInstance(JdkDynamicAopProxyTest.class.getClassLoader(), new Class[]{FooService.class}, new InvocationHandler(){
+        FooManager proxy = (FooManager) Proxy.newProxyInstance(JdkDynamicAopProxyTest.class.getClassLoader(), new Class[]{FooManager.class}, new InvocationHandler(){
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 return methodInterceptor.invoke(reflectiveMethodInvocation);
@@ -168,7 +168,7 @@ public class JdkDynamicAopProxyTest {
 
     @Test
     public void testDefaultPointcutAdvisor() throws Throwable {
-        FooServiceImpl fooService = new FooServiceImpl();
+        FooManagerImpl FooManager = new FooManagerImpl();
 
 
         MethodInvocation methodInvocation = new MethodInvocation() {
@@ -181,7 +181,7 @@ public class JdkDynamicAopProxyTest {
             @Override
             public Object getThis() {
                 // 1.对象写死
-                return fooService;
+                return FooManager;
             }
 
             @Override
@@ -198,7 +198,7 @@ public class JdkDynamicAopProxyTest {
             public Method getMethod() {
                 try {
                     // 2.类和方法写死
-                    return FooServiceImpl.class.getMethod("foo");
+                    return FooManagerImpl.class.getMethod("foo");
                 } catch (NoSuchMethodException e) {
                     return null;
                 }
@@ -223,14 +223,14 @@ public class JdkDynamicAopProxyTest {
 //        assertTrue(pointcut.getClassFilter() instanceof TrueClassFilter);
 //        assertTrue(pointcut.getMethodMatcher() instanceof TrueMethodMatcher);
 
-        assertTrue(advisor.getPointcut().getClassFilter().matches(FooServiceImpl.class));
-        assertTrue(advisor.getPointcut().getMethodMatcher().matches(FooServiceImpl.class.getMethod("foo"), FooServiceImpl.class));
-//        if(advisor.getPointcut().getClassFilter().matches(FooServiceImpl.class)
-//                && advisor.getPointcut().getMethodMatcher().matches(FooServiceImpl.class.getMethod("foo"), FooServiceImpl.class)) {
+        assertTrue(advisor.getPointcut().getClassFilter().matches(FooManagerImpl.class));
+        assertTrue(advisor.getPointcut().getMethodMatcher().matches(FooManagerImpl.class.getMethod("foo"), FooManagerImpl.class));
+//        if(advisor.getPointcut().getClassFilter().matches(FooManagerImpl.class)
+//                && advisor.getPointcut().getMethodMatcher().matches(FooManagerImpl.class.getMethod("foo"), FooManagerImpl.class)) {
         assertEquals("foo", ((MethodBeforeAdviceInterceptor) advisor.getAdvice()).invoke(methodInvocation));
 //        }
 
-        FooService proxy = (FooService) Proxy.newProxyInstance(JdkDynamicAopProxyTest.class.getClassLoader(), new Class[]{FooService.class}, new InvocationHandler(){
+        FooManager proxy = (FooManager) Proxy.newProxyInstance(JdkDynamicAopProxyTest.class.getClassLoader(), new Class[]{FooManager.class}, new InvocationHandler(){
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 return methodInterceptor.invoke(methodInvocation);
@@ -250,13 +250,13 @@ public class JdkDynamicAopProxyTest {
         });
 
         AdvisedSupport advisedSupport = new AdvisedSupport();
-        advisedSupport.setInterfaces(FooService.class);
-        advisedSupport.setTargetClass(FooServiceImpl.class);
+        advisedSupport.setInterfaces(FooManager.class);
+        advisedSupport.setTargetClass(FooManagerImpl.class);
 //        advisedSupport.addAdvice(advice);
         advisedSupport.addAdvisor(new DefaultAdvisorAdapterRegistry().wrap(advice));
         JdkDynamicAopProxy jdkDynamicAopProxy= new JdkDynamicAopProxy(advisedSupport);
-        advisedSupport.setTarget(new FooServiceImpl());
-        Assert.assertEquals("foo",((FooService)jdkDynamicAopProxy.getProxy()).foo());
+        advisedSupport.setTarget(new FooManagerImpl());
+        Assert.assertEquals("foo",((FooManager)jdkDynamicAopProxy.getProxy()).foo());
     }
 
 
@@ -271,11 +271,11 @@ public class JdkDynamicAopProxyTest {
         });
 
         ProxyFactory proxyFactory = new ProxyFactory();
-        proxyFactory.setInterfaces(FooService.class);
-        proxyFactory.setTargetClass(FooServiceImpl.class);
+        proxyFactory.setInterfaces(FooManager.class);
+        proxyFactory.setTargetClass(FooManagerImpl.class);
 //        advisedSupport.addAdvice(advice);
         proxyFactory.addAdvisor(new DefaultAdvisorAdapterRegistry().wrap(advice));
-        proxyFactory.setTarget(new FooServiceImpl());
-        Assert.assertEquals("foo",((FooService)proxyFactory.getProxy()).foo());
+        proxyFactory.setTarget(new FooManagerImpl());
+        Assert.assertEquals("foo",((FooManager)proxyFactory.getProxy()).foo());
     }
 }

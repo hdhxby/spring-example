@@ -11,7 +11,8 @@ public class FooRepositoryImpl implements FooRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void foo() {
+    public String foo() {
         jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS `log` (`id` bigint(20))");
+        return "";
     }
 }

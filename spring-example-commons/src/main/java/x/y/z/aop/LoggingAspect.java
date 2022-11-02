@@ -4,6 +4,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +12,12 @@ import org.slf4j.LoggerFactory;
 @Aspect
 public class LoggingAspect {
 
-    @Pointcut("execution(* x.y.z.service.FooService.foo(..))")
+    private Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
+    @Pointcut("execution(* x.y.z.manager.*.foo(..))")
     public void point(){};
 
 
-    @Around("point()")
+//    @Around("point()")
     public void around(ProceedingJoinPoint joinPoint){
         try{
             logger(joinPoint).info("before");
@@ -25,6 +27,11 @@ public class LoggingAspect {
             logger(joinPoint).error("error", throwable);
         }
     };
+
+    @Before("point()")
+    public void before(){
+        logger.info("before");
+    }
 
     private Logger logger(JoinPoint joinPoint) {
         return LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
