@@ -11,7 +11,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-web-example</artifactId>
+    <artifactId>spring-webmvc-example</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

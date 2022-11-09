@@ -1,0 +1,16 @@
+server:
+    port: 8081
+
+spring:
+    application:
+        name: web
+#    datasource:
+#        schema:
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    endpoint:
+        health:
+            show-details: ALWAYS

@@ -1,8 +1,11 @@
 package org.springframework.orm.hibernate5;
 
+import org.junit.Test;
+
 public class HibernateTemplateTest {
 
-    public void a(){
+    @Test
+    public void testHibernateTemplate(){
         HibernateTemplate hibernateTemplate;
     }
 }
