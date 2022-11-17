@@ -2,8 +2,8 @@ package org.springframework.core.type.classreading;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 import org.springframework.asm.ClassReader;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;

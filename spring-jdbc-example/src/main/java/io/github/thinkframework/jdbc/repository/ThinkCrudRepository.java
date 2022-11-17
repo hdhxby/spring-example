@@ -63,6 +63,10 @@ public class ThinkCrudRepository<T,ID> implements CrudRepository<T,ID> {
     }
 
     @Override
+    public void deleteAllById(Iterable<? extends ID> ids) {
+
+    }
+    @Override
     public void deleteAll(Iterable<? extends T> entities) {
 
     }

@@ -1,6 +1,8 @@
 package org.springframework.core.convert.support;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.ConditionalGenericConverter;
 
@@ -10,9 +12,10 @@ import java.util.Set;
 
 public class CollectionToCollectionConverterTest {
 
+    public static final Logger logger = LoggerFactory.getLogger(CollectionToCollectionConverterTest.class);
+
     @Test
     public void test3() {
-        System.out.println("----------------CollectionToCollectionConverter---------------");
         ConditionalGenericConverter conditionalGenericConverter = new CollectionToCollectionConverter(new DefaultConversionService());
         // 将Collection转为Collection（注意：没有指定泛型类型哦）
         System.out.println(conditionalGenericConverter.getConvertibleTypes());

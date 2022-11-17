@@ -3,8 +3,7 @@ package org.springframework.aop.framework;
 import org.aopalliance.intercept.Joinpoint;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.*;
@@ -20,8 +19,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class JdkDynamicAopProxyTest {
 
@@ -256,7 +255,7 @@ public class JdkDynamicAopProxyTest {
         advisedSupport.addAdvisor(new DefaultAdvisorAdapterRegistry().wrap(advice));
         JdkDynamicAopProxy jdkDynamicAopProxy= new JdkDynamicAopProxy(advisedSupport);
         advisedSupport.setTarget(new FooManagerImpl());
-        Assert.assertEquals("foo",((FooManager)jdkDynamicAopProxy.getProxy()).foo());
+        assertEquals("foo",((FooManager)jdkDynamicAopProxy.getProxy()).foo());
     }
 
 
@@ -276,6 +275,6 @@ public class JdkDynamicAopProxyTest {
 //        advisedSupport.addAdvice(advice);
         proxyFactory.addAdvisor(new DefaultAdvisorAdapterRegistry().wrap(advice));
         proxyFactory.setTarget(new FooManagerImpl());
-        Assert.assertEquals("foo",((FooManager)proxyFactory.getProxy()).foo());
+        assertEquals("foo",((FooManager)proxyFactory.getProxy()).foo());
     }
 }

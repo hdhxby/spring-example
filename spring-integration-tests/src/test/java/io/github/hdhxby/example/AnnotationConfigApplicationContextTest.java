@@ -9,7 +9,7 @@ import io.github.hdhxby.example.aop.ThinkAfterAdviceMethodInterceptor;
 import io.github.hdhxby.example.aop.ThinkAfterPointcutAdvisor;
 import io.github.hdhxby.example.aop.ThinkBeforeAdviceMethodInterceptor;
 import io.github.hdhxby.example.aop.ThinkBeforePointcutAdvisor;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.framework.adapter.GlobalAdvisorAdapterRegistry;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

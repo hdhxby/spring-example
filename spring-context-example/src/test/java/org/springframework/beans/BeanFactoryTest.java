@@ -1,7 +1,7 @@
 package org.springframework.beans;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -12,7 +12,7 @@ import x.y.z.repository.FooRepository;
 import x.y.z.service.FooService;
 import x.y.z.service.FooServiceImpl;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class BeanFactoryTest {

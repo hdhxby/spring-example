@@ -1,7 +1,6 @@
 package org.springframework.aop.aspectj.annotation;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.aspectj.InstantiationModelAwarePointcutAdvisor;
 import org.springframework.aop.framework.ProxyFactory;
@@ -13,6 +12,8 @@ import x.y.z.aop.LoggingAspect;
 import x.y.z.config.FooConfiguration;
 import x.y.z.manager.FooManager;
 import x.y.z.manager.FooManagerImpl;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InstantiationModelAwarePointcutAdvisorTest {
 
@@ -42,12 +43,12 @@ public class InstantiationModelAwarePointcutAdvisorTest {
                 0,
                 null);
         proxyFactory.addAdvisor(instantiationModelAwarePointcutAdvisor);
-        Assert.assertEquals("foo",((FooManager)proxyFactory.getProxy()).foo());
+        assertEquals("foo",((FooManager)proxyFactory.getProxy()).foo());
     }
 
     @Test
     public void testAnnotationAwareAspectJAutoProxyCreator(){
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(FooConfiguration.class);
-        Assert.assertEquals("foo",applicationContext.getBean(FooManager.class).foo());
+        assertEquals("foo",applicationContext.getBean(FooManager.class).foo());
     }
 }

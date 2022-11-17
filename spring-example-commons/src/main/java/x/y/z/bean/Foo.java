@@ -1,7 +1,10 @@
 package x.y.z.bean;
 
+import javax.validation.constraints.NotNull;
+
 public class Foo {
 
+    @NotNull
     private String name;
 
     public Foo() {

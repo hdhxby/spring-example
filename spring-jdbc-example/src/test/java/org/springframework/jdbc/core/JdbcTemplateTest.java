@@ -2,11 +2,10 @@ package org.springframework.jdbc.core;
 
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -28,7 +27,7 @@ JdbcTemplateTest {
 
     private DataSource dataSource;
 
-    @Before
+    @BeforeEach
     public void setup(){
         JdbcDataSource dataSource = new JdbcDataSource();
         dataSource.setURL("jdbc:h2:mem:cert;DB_CLOSE_DELAY=-1");
@@ -90,6 +89,6 @@ JdbcTemplateTest {
     @Test
     public void testAnnotationAwareAspectJAutoProxyCreator(){
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(FooConfiguration.class);
-        Assert.assertEquals("foo",applicationContext.getBean(FooService.class).foo());
+        assertEquals("foo",applicationContext.getBean(FooService.class).foo());
     }
 }

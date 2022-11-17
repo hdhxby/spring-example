@@ -1,7 +1,7 @@
 package io.github.hdhxby.example.messaging;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 //import org.springframework.integration.channel.DirectChannel;
 //import org.springframework.integration.support.MessageBuilder;
 //import org.springframework.integration.channel.PublishSubscribeChannel;
