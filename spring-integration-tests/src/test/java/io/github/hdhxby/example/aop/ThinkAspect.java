@@ -30,7 +30,7 @@ public class ThinkAspect {
 
     @Around("point()")
     public void before(){
-        logger.info("before");
+        logger.debug("before");
     };
 
     private Logger logger(JoinPoint joinPoint) {

@@ -16,7 +16,7 @@ import x.y.z.bean.Foo;
 import x.y.z.config.FooConfiguration;
 import x.y.z.repository.FooRepository;
 import x.y.z.service.FooService;
-import x.y.z.service.FooServiceImpl;
+import x.y.z.service.impl.FooServiceImpl;
 
 import java.io.IOException;
 import java.util.Set;
@@ -39,23 +39,6 @@ public class ApplicationContextTest {
         assertNotNull(applicationContext.getBean("fooRepositoryImpl"));
         assertTrue(applicationContext.getBean("fooRepositoryImpl") instanceof FooRepository);
 //        assertNotNull(applicationContext.getBean("fooServiceImpl",FooServiceImpl.class).getFooRepository());
-    }
-
-    /**
-     * 测试AnnotationConfigApplicationContext
-     * 依赖注入
-     */
-    @Test
-    public void testApplicationContext1(){
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
-        applicationContext.register(FooConfiguration.class);
-        applicationContext.refresh();
-
-        assertNotNull(applicationContext.getBean("fooServiceImpl"));
-        assertTrue(applicationContext.getBean("fooServiceImpl") instanceof FooService);
-        assertNotNull(applicationContext.getBean("fooRepositoryImpl"));
-        assertTrue(applicationContext.getBean("fooRepositoryImpl") instanceof FooRepository);
-        assertNotNull(((FooServiceImpl)applicationContext.getBean(FooService.class)).getFooRepository());
     }
 
     @Test
@@ -101,7 +84,7 @@ public class ApplicationContextTest {
         FooService fooService = beanFactory.getBean(FooService.class);
         AnnotationAwareAspectJAutoProxyCreator annotationAwareAspectJAutoProxyCreator = new AnnotationAwareAspectJAutoProxyCreator();
         annotationAwareAspectJAutoProxyCreator.postProcessAfterInitialization(fooService,"fooService");
-        fooService.foo();
+        fooService.count();
     }
 
 
@@ -137,7 +120,7 @@ public class ApplicationContextTest {
         }
 
         FooService fooService = beanFactory.getBean(FooService.class);
-        fooService.foo();
+        fooService.count();
     }
 
 
@@ -196,20 +179,4 @@ public class ApplicationContextTest {
 
     }
 
-    @Test
-    public void test32(){
-
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(FooConfiguration.class);
-//        applicationContext.refresh();
-        applicationContext.getBean(Foo.class);
-    }
-
-
-    @Test
-    public void test33(){
-
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(FooConfiguration.class);
-//        applicationContext.refresh();
-        applicationContext.getBean(Foo.class);
-    }
 }

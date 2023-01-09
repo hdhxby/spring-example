@@ -2,35 +2,44 @@ package x.y.z.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Role;
 
 @Aspect
 public class LoggingAspect {
 
     private Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
-    @Pointcut("execution(* x.y.z.manager.*.foo(..))")
+
+    public static final String POINTCUT = "execution(* x.y.z.manager..*(..))";
+    @Pointcut(POINTCUT)
     public void point(){};
 
+    @Before("point()")
+    public void before(){
+        logger.debug("方法调用前");
+    }
 
 //    @Around("point()")
     public void around(ProceedingJoinPoint joinPoint){
         try{
-            logger(joinPoint).info("before");
+            logger(joinPoint).info("方法调用前");
             joinPoint.proceed();
-            logger(joinPoint).info("after");
+            logger(joinPoint).info("方法调用后");
         }  catch (Throwable throwable) {
-            logger(joinPoint).error("error", throwable);
+            logger(joinPoint).error("方法异常", throwable);
         }
     };
 
-    @Before("point()")
-    public void before(){
-        logger.info("before");
+
+
+//    @After("point()")
+    public void after(){
+        logger.debug("方法调用后");
     }
 
     private Logger logger(JoinPoint joinPoint) {

@@ -12,7 +12,15 @@ public class MappingJackson2HttpMessageConverterTest {
     public void test() throws IOException {
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
 
-        Foo foo = (Foo) mappingJackson2HttpMessageConverter.read(Foo.class,new MockHttpInputMessage("{\"name\":\"name\"}".getBytes(StandardCharsets.UTF_8)));
+        Foo foo = (Foo) mappingJackson2HttpMessageConverter.read(Foo.class,new MockHttpInputMessage("""
+                    {
+                        "name" : "foo",
+                        "bar" : {
+                            "name" : "bar"
+                        }
+                    }
+                """.getBytes(StandardCharsets.UTF_8)));
         System.out.println(foo.getName());
+
     }
 }

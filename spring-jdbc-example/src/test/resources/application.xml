@@ -12,7 +12,7 @@
         https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- this is the service object that we want to make transactional -->
-    <bean id="fooService" class="x.y.service.DefaultFooService"/>
+    <bean id="fooService" class="x.y.z.service.impl.FooServiceImpl"/>
 
     <!-- the transactional advice (what 'happens'; see the <aop:advisor/> bean below) -->
     <tx:advice id="txAdvice" transaction-manager="txManager">
@@ -28,12 +28,12 @@
     <!-- ensure that the above transactional advice runs for any execution
         of an operation defined by the FooService interface -->
     <aop:config>
-        <aop:pointcut id="fooServiceOperation" expression="execution(* x.y.service.FooService.*(..))"/>
+        <aop:pointcut id="fooServiceOperation" expression="execution(* x.y.z.service.FooService.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation"/>
     </aop:config>
 
     <!-- don't forget the DataSource -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@rj-t42:1521:elvis"/>
         <property name="username" value="scott"/>

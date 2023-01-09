@@ -6,34 +6,40 @@ import org.slf4j.LoggerFactory;
 
 import java.beans.PropertyEditor;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * 字符串转Boolean
+ * DataBinder里会用到
+ */
 public class CustomBooleanEditorTest {
 
     public static final Logger logger = LoggerFactory.getLogger(CustomBooleanEditorTest.class);
     
     @Test
     public void test() {
-        PropertyEditor editor = new CustomBooleanEditor(true);
-
-        // 这些都是true，不区分大小写
+        CustomBooleanEditor editor = new CustomBooleanEditor(true);
+        // true
         editor.setAsText("trUe");
-        logger.debug(editor.getAsText());
+        assertEquals(true, editor.getValue());
         editor.setAsText("on");
-        logger.debug(editor.getAsText());
+        assertEquals(true, editor.getValue());
         editor.setAsText("yes");
-        logger.debug(editor.getAsText());
+        assertEquals(true, editor.getValue());
         editor.setAsText("1");
-        logger.debug(editor.getAsText());
-
-        // 这些都是false（注意：null并不会输出为false，而是输出空串）
-        editor.setAsText(null);
-        logger.debug(editor.getAsText());
+        assertEquals(true, editor.getValue());
+        // false
         editor.setAsText("fAlse");
-        logger.debug(editor.getAsText());
+        assertEquals(false, editor.getValue());
         editor.setAsText("off");
-        logger.debug(editor.getAsText());
+        assertEquals(false, editor.getValue());
         editor.setAsText("no");
-        logger.debug(editor.getAsText());
+        assertEquals(false, editor.getValue());
         editor.setAsText("0");
-        logger.debug(editor.getAsText());
+        assertEquals(false, editor.getValue());
+        // 空字符串
+        editor.setAsText(null);
+        assertEquals("", editor.getValue());
     }
 }

@@ -2,36 +2,58 @@ package org.springframework.beans;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.propertyeditors.UUIDEditor;
+import x.y.z.bean.Foo;
 
 import java.beans.PropertyEditor;
 import java.beans.PropertyEditorSupport;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+
 public class PropertyEditorRegistrySupportTest {
 
-    public abstract class Animal {
-        private Long id;
-        private String name;
+    public class FooPropertyEditor extends PropertyEditorSupport {
+        private Foo foo;
 
-        public Long getId() {
-            return id;
+        @Override
+        public String getAsText() {
+            return foo.toString();
         }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
+        @Override
+        public void setAsText(String text) throws IllegalArgumentException {
+            foo = new Foo(text);
         }
     }
 
-    public class Cat extends Animal {
+    @Test
+    public void test() {
+        PropertyEditorRegistry propertyEditorRegistry = new PropertyEditorRegistrySupport();
+        propertyEditorRegistry.registerCustomEditor(Foo.class, new FooPropertyEditor());
 
+        PropertyEditor fooPropertyEditor = propertyEditorRegistry.findCustomEditor(Foo.class, null);
+        assertInstanceOf(FooPropertyEditor.class, fooPropertyEditor);
+    }
+
+
+    public class BarUUIDEditor extends UUIDEditor {
+
+        private static final String SUFFIX = "bar_";
+
+        @Override
+        public String getAsText() {
+            return SUFFIX.concat(super.getAsText());
+        }
+
+        @Override
+        public void setAsText(String text) throws IllegalArgumentException {
+            text = text.replace(SUFFIX, "");
+            super.setAsText(text);
+        }
+    }
+
+    class Bar {
         private UUID uuid;
 
         public UUID getUuid() {
@@ -42,94 +64,23 @@ public class PropertyEditorRegistrySupportTest {
             this.uuid = uuid;
         }
     }
-
-    public class Person {
-        private Long id;
-        private String name;
-        private Cat cat;
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public Cat getCat() {
-            return cat;
-        }
-
-        public void setCat(Cat cat) {
-            this.cat = cat;
-        }
-    }
-
-    public class PersonCatUUIDEditor extends UUIDEditor {
-
-        private static final String SUFFIX = "_path";
-
-        @Override
-        public String getAsText() {
-            return super.getAsText().concat(SUFFIX);
-        }
-
-        @Override
-        public void setAsText(String text) throws IllegalArgumentException {
-            text = text.replace(SUFFIX, "");
-            super.setAsText(text);
-        }
-    }
-    public class AnimalPropertyEditor extends PropertyEditorSupport {
-
-        @Override
-        public String getAsText() {
-            return null;
-        }
-
-        @Override
-        public void setAsText(String text) throws IllegalArgumentException {
-        }
-    }
-
-    @Test
-    public void test() {
-        PropertyEditorRegistry propertyEditorRegistry = new PropertyEditorRegistrySupport();
-        propertyEditorRegistry.registerCustomEditor(Animal.class, new AnimalPropertyEditor());
-
-        // 付类型、子类型均可匹配上对应的编辑器
-        PropertyEditor customEditor1 = propertyEditorRegistry.findCustomEditor(Cat.class, null);
-        PropertyEditor customEditor2 = propertyEditorRegistry.findCustomEditor(Animal.class, null);
-        System.out.println(customEditor1 == customEditor2);
-        System.out.println(customEditor1.getClass().getSimpleName());
-    }
-
     @Test
     public void test6() {
         PropertyEditorRegistrySupport propertyEditorRegistry = new PropertyEditorRegistrySupport();
         // 通用的
         propertyEditorRegistry.registerCustomEditor(UUID.class, new UUIDEditor());
         // 专用的
-        propertyEditorRegistry.registerCustomEditor(Person.class, "cat.uuid", new PersonCatUUIDEditor());
+        propertyEditorRegistry.registerCustomEditor(Bar.class, "uuid", new BarUUIDEditor());
 
 
         String uuidStr = "1-2-3-4-5";
-        String personCatUuidStr = "1-2-3-4-5_path";
+        String personCatUuidStr = "bar_1-2-3-4-5";
 
         PropertyEditor customEditor = propertyEditorRegistry.findCustomEditor(UUID.class, null);
-        // customEditor.setAsText(personCatUuidStr); // 抛异常：java.lang.NumberFormatException: For input string: "5_YourBatman"
         customEditor.setAsText(uuidStr);
         System.out.println(customEditor.getAsText());
 
-        customEditor = propertyEditorRegistry.findCustomEditor(Person.class, "cat.uuid");
+        customEditor = propertyEditorRegistry.findCustomEditor(Bar.class, "uuid");
         customEditor.setAsText(personCatUuidStr);
         System.out.println(customEditor.getAsText());
     }

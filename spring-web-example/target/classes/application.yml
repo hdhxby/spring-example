@@ -1,0 +1,23 @@
+server:
+    port: 8080
+
+spring:
+    application:
+        name: web
+    task:
+        scheduling:
+            pool:
+                size: 1
+#    datasource:
+#        schema:
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    endpoint:
+        health:
+            show-details: ALWAYS
+
+foo:
+    name: foo

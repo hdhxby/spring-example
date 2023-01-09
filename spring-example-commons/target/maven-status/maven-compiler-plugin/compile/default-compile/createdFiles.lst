@@ -1,0 +1,13 @@
+x/y/z/config/tx/TransactionConfiguration.class
+x/y/z/manager/impl/FooManagerImpl.class
+x/y/z/repository/impl/FooRepositoryImpl.class
+x/y/z/config/jdbc/DataSourceConfiguration.class
+x/y/z/service/impl/FooServiceImpl.class
+x/y/z/manager/FooManager.class
+x/y/z/aop/LoggingAspect.class
+x/y/z/service/FooService.class
+x/y/z/factory/FooFactory.class
+x/y/z/repository/FooRepository.class
+x/y/z/config/aspect/AspectJCofiguration.class
+x/y/z/bean/Foo.class
+x/y/z/bean/Bar.class

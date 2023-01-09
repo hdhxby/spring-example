@@ -10,12 +10,7 @@
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
-    <root level="INFO">
+    <root level="debug">
         <appender-ref ref="CONSOLE" />
     </root>
-
-    <logger name="com.hdhxby" level="DEBUG" />
-    <logger name="sun.rmi" level="INFO"/>
-    <logger name="javax.management.remote.rmi" level="INFO"/>
-
 </configuration>

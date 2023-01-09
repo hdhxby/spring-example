@@ -10,6 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * 创建完集合再通过ConversionService转换集合元素
+ */
 public class CollectionToCollectionConverterTest {
 
     public static final Logger logger = LoggerFactory.getLogger(CollectionToCollectionConverterTest.class);
@@ -24,9 +29,10 @@ public class CollectionToCollectionConverterTest {
         TypeDescriptor sourceTypeDesp = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(String.class));
         TypeDescriptor targetTypeDesp = TypeDescriptor.collection(Set.class, TypeDescriptor.valueOf(Integer.class));
 
-        System.out.println(conditionalGenericConverter.matches(sourceTypeDesp, targetTypeDesp));
+        assertTrue(conditionalGenericConverter.matches(sourceTypeDesp, targetTypeDesp));
         Object convert = conditionalGenericConverter.convert(sourceList, sourceTypeDesp, targetTypeDesp);
         System.out.println(convert.getClass());
         System.out.println(convert);
     }
+
 }

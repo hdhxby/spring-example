@@ -3,36 +3,38 @@ package org.springframework.beans.support;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.beans.PropertyEditorRegistrySupport;
-import org.springframework.beans.PropertyEditorRegistrySupportTest;
-import org.springframework.beans.propertyeditors.CustomDateEditorTest;
-import org.springframework.beans.propertyeditors.UUIDEditor;
 import org.springframework.core.env.StandardEnvironment;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 
 import java.beans.PropertyEditor;
-import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+
+/**
+ * beanFactory.addPropertyEditorRegistrar()
+ */
 public class ResourceEditorRegistrarTest {
 
     public static final Logger logger = LoggerFactory.getLogger(ResourceEditorRegistrarTest.class);
 
+    /**
+     *
+     */
     @Test
-    public void test6() {
+    public void test() {
         PropertyEditorRegistrySupport propertyEditorRegistry = new PropertyEditorRegistrySupport(){
             {
-                registerDefaultEditors();
+                registerDefaultEditors(); // 必须调用下这句
             }
         };
+
         ResourceEditorRegistrar resourceEditorRegistrar = new ResourceEditorRegistrar(new DefaultResourceLoader(),new StandardEnvironment());
         resourceEditorRegistrar.registerCustomEditors(propertyEditorRegistry);
 
-        PropertyEditor propertyEditor = propertyEditorRegistry.getDefaultEditor(Resource.class);
-        propertyEditor.setAsText("classpath:application.yml");
-
-        propertyEditor.getValue();
+        PropertyEditor propertyEditor = propertyEditorRegistry.findCustomEditor(Resource.class, null);
+        propertyEditor.setAsText("classpath:applicationContext.xml");
+        assertInstanceOf(Resource.class, propertyEditor.getValue());
     }
 }

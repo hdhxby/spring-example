@@ -1,0 +1,14 @@
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/config/jdbc/DataSourceConfiguration.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/aop/LoggingAspect.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/service/impl/FooServiceImpl.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/manager/FooManager.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/repository/FooRepository.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/bean/Bar.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/manager/impl/FooManagerImpl.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/repository/impl/FooRepositoryImpl.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/config/AAA.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/service/FooService.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/bean/Foo.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/config/tx/TransactionConfiguration.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/config/aspect/AspectJCofiguration.java
+/Users/lixiaobin/git/hdhxby/spring-framework-example/spring-example-commons/src/main/java/x/y/z/factory/FooFactory.java

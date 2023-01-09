@@ -12,9 +12,11 @@ import java.util.stream.Stream;
 
 public class StreamConverterTest {
 
+    /**
+     * 通过TypeDescriptor转换
+     */
     @Test
     public void test2() {
-        System.out.println("----------------StreamConverter---------------");
         ConditionalGenericConverter converter = new StreamConverter(new DefaultConversionService());
 
         TypeDescriptor sourceTypeDesp = TypeDescriptor.valueOf(Set.class);
@@ -28,9 +30,11 @@ public class StreamConverterTest {
         System.out.println(Stream.class.isAssignableFrom(convert.getClass()));
     }
 
+    /**
+     * 直接通过Class转换
+     */
     @Test
     public void test3() {
-        System.out.println("----------------StreamConverter使用场景---------------");
         ConversionService conversionService = new DefaultConversionService();
         Stream<Integer> result = conversionService.convert(Collections.singleton(1), Stream.class);
 
